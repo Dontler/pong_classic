@@ -15,10 +15,10 @@ class App:
             self._ball = pygame.draw.circle(surf, (255, 255, 255), self._ball.center, self._radius)
 
         def move_right(self):
-            self._ball = self._ball.move(3, 7 * self.vertDir)
+            self._ball = self._ball.move(5, 13 * self.vertDir)
 
         def move_left(self):
-            self._ball = self._ball.move(-3, 7 * self.vertDir)
+            self._ball = self._ball.move(-5, 13 * self.vertDir)
 
         def top(self):
             return self._ball.top
@@ -54,7 +54,7 @@ class App:
     FPS = 30
 
     def __init__(self):
-        self.__size = self.__width, self.__height = 640, 480
+        self.__size = self.__width, self.__height = 640, 700
         self.__display_surf = None
         self.__font = None
         self._leftScore, self._rightScore = 0, 0
@@ -67,8 +67,8 @@ class App:
         self._dirRight = 1
         self._dirLeft = 1
         self._clock = pygame.time.Clock()
-        self._leftPlatform = pygame.Rect([15, int(self.__height / 2) - 50, 15, 80])
-        self._rightPlatform = pygame.Rect([self.__width - 30, int(self.__height / 2) - 50, 15, 80])
+        self._leftPlatform = pygame.Rect([15, int(self.__height / 2) - 50, 15, 50])
+        self._rightPlatform = pygame.Rect([self.__width - 30, int(self.__height / 2) - 50, 15, 50])
         self._ball = None
         
 
@@ -112,11 +112,11 @@ class App:
 
     
     def __move_leftPlatform(self, dir=1):
-        self._leftPlatform = self._leftPlatform.move(0, 5 * dir)
+        self._leftPlatform = self._leftPlatform.move(0, 13 * dir)
 
     
     def __move_rightPlatform(self, dir=1):
-        self._rightPlatform = self._rightPlatform.move(0, 5 * dir)
+        self._rightPlatform = self._rightPlatform.move(0, 13 * dir)
 
     def goal_check(self):
         if self._ball.left_goal_collision():
@@ -145,9 +145,9 @@ class App:
 
 
     def on_loop(self):
-        if self._move_leftPlatform and ((self._leftPlatform.top > 0 and self._dirLeft == -1) or (self._leftPlatform.top < self.height - 80 and self._dirLeft == 1)):
+        if self._move_leftPlatform and ((self._leftPlatform.top > 0 and self._dirLeft == -1) or (self._leftPlatform.top < self.height - 50 and self._dirLeft == 1)):
             self.__move_leftPlatform(self._dirLeft)
-        if self._move_rightPlatform and ((self._rightPlatform.top > 0 and self._dirRight == -1) or (self._rightPlatform.top < self.height - 80 and self._dirRight == 1)):
+        if self._move_rightPlatform and ((self._rightPlatform.top > 0 and self._dirRight == -1) or (self._rightPlatform.top < self.height - 50 and self._dirRight == 1)):
             self.__move_rightPlatform(self._dirRight)
         if self._play:
             if self._ball.horDir:
