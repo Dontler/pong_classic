@@ -15,10 +15,10 @@ class App:
             self._ball = pygame.draw.circle(surf, (255, 255, 255), self._ball.center, self._radius)
 
         def move_right(self):
-            self._ball = self._ball.move(5, 13 * self.vertDir)
+            self._ball = self._ball.move(7, 13 * self.vertDir)
 
         def move_left(self):
-            self._ball = self._ball.move(-5, 13 * self.vertDir)
+            self._ball = self._ball.move(-7, 13 * self.vertDir)
 
         def top(self):
             return self._ball.top
@@ -51,7 +51,7 @@ class App:
             self._ball = pygame.draw.circle(surf, (255, 255, 255), self._center, self._radius)
             
     
-    FPS = 30
+    FPS = 60
 
     def __init__(self):
         self.__size = self.__width, self.__height = 640, 700
@@ -67,8 +67,8 @@ class App:
         self._dirRight = 1
         self._dirLeft = 1
         self._clock = pygame.time.Clock()
-        self._leftPlatform = pygame.Rect([15, int(self.__height / 2) - 50, 15, 50])
-        self._rightPlatform = pygame.Rect([self.__width - 30, int(self.__height / 2) - 50, 15, 50])
+        self._leftPlatform = pygame.Rect([30, int(self.__height / 2) - 50, 15, 50])
+        self._rightPlatform = pygame.Rect([self.__width - 45, int(self.__height / 2) - 50, 15, 50])
         self._ball = None
         
 
@@ -131,7 +131,7 @@ class App:
             self.update_score()
 
     def update_score(self):
-        self._text_score = self.__font.render(str(self._leftScore) + " : " + str(self._rightScore), 0, (255, 255, 255))
+        self._text_score = self.__font.render(str(self._rightScore) + " : " + str(self._leftScore), 0, (255, 255, 255))
 
     def start(self):
         self._play = True
